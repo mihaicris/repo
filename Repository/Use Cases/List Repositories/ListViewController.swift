@@ -80,14 +80,10 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "iOS Repositories"
+        title = "Repositories"
         tableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
-        loadRepos()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         state = .loading
+        loadRepos()
     }
     
     // MARK: - Helpers

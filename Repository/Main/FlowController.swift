@@ -43,7 +43,6 @@ final public class FlowController {
                 // TODO (Mihai): Handle Error
                 return
             }
-            controller.title = "Back"
             self?.showFileContentViewController(repository, from: navController)
         }
         
