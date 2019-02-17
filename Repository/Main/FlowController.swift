@@ -13,6 +13,7 @@ final public class FlowController {
     // MARK: - Properties
     
     private let window: UIWindow
+    private let client = URLSessionHTTPClient()
     
     // MARK: - Initialization
     
@@ -28,13 +29,13 @@ final public class FlowController {
     
     // MARK: - Helpers
 
-    private func createListViewController() -> UIViewController {
-        guard let url = URL(string: "https://api.github.com/search/repositories?q=topic:iOS+language:Swift&sort=stars&order=desc&per_page=100") else {
-            fatalError("Bad URL")
+    private func createListViewController() -> UIViewController { // TODO (Mihai): Add search bar with topic field
+        
+        guard let url = URL(string: Config.startURL) else {
+            fatalError("Bad URL") // TODO (Mihai): HANDLE ERROR
         }
         
-        let client = URLSessionHTTPClient()
-        let repositoryLoader = RemoteRepositoryLoader(url: url, client: client)
+        let repositoryLoader = RemoteRepositoryLoader(url: url, client: self.client)
         let controller = ListViewController(repositoryLoader: repositoryLoader)
         
         controller.onShowRepo = { [weak self] repository in

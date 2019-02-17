@@ -12,15 +12,22 @@ class ListViewController: UITableViewController {
 
     // MARK: - Properties
     
-    private let repositoryLoader: RepositoryLoader
-    
     public var onShowRepo: ((Repository) -> Void)?
+    
+    private enum State {
+        case loading
+        case showing
+        case error
+    }
     
     private var model: [Repository] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
+
+    private let repositoryLoader: RepositoryLoader
+    private var state: State = .loading // TODO (Mihai): Implement waiting view
     
     // MARK: - Initialization
     
@@ -70,8 +77,10 @@ class ListViewController: UITableViewController {
             switch result {
             case let .success(repositories):
                 self.model = repositories
+                self.state = .showing
             case let .failure(error):
-                print(error) // TODO: Handle Error
+                self.state = .error
+                print(error) // TODO (Mihai): Handle Error
             }
         }
     }

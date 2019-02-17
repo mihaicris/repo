@@ -25,6 +25,7 @@
 		831E942A2219B3CC00001F94 /* RepositoryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94292219B3CC00001F94 /* RepositoryLoader.swift */; };
 		831E942C2219B4BB00001F94 /* RemoteRepositoryLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E942B2219B4BB00001F94 /* RemoteRepositoryLoader.swift */; };
 		831E942E2219B50C00001F94 /* RepositoryItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */; };
+		831E94322219BBCE00001F94 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94312219BBCE00001F94 /* Config.swift */; };
 		838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FEC5F221938AB00B57515 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		831E94292219B3CC00001F94 /* RepositoryLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryLoader.swift; sourceTree = "<group>"; };
 		831E942B2219B4BB00001F94 /* RemoteRepositoryLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepositoryLoader.swift; sourceTree = "<group>"; };
 		831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemsMapper.swift; sourceTree = "<group>"; };
+		831E94312219BBCE00001F94 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		838FEC5F221938AB00B57515 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +90,7 @@
 				831E941822198D6900001F94 /* Assets */,
 				831E941722198D5D00001F94 /* Config */,
 				831E941922198D7F00001F94 /* Main */,
-				831E941B22198DAF00001F94 /* Use Case */,
+				831E941B22198DAF00001F94 /* Use Cases */,
 				831E941C22198DDC00001F94 /* Models */,
 				831E941D22198DE900001F94 /* Helpers */,
 				831E94242219B2D000001F94 /* Repository API */,
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				8302FF4E221929E300EB6DD9 /* Info.plist */,
+				831E94312219BBCE00001F94 /* Config.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -158,14 +161,14 @@
 			path = "Show Readme Content";
 			sourceTree = "<group>";
 		};
-		831E941B22198DAF00001F94 /* Use Case */ = {
+		831E941B22198DAF00001F94 /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
 				831E941522198D3700001F94 /* List Repositories */,
 				831E941622198D4900001F94 /* Show Repository Details */,
 				831E941A22198D9100001F94 /* Show Readme Content */,
 			);
-			path = "Use Case";
+			path = "Use Cases";
 			sourceTree = "<group>";
 		};
 		831E941C22198DDC00001F94 /* Models */ = {
@@ -305,6 +308,7 @@
 				831E94212219934F00001F94 /* Repository.swift in Sources */,
 				838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */,
 				8302FF5922192DA300EB6DD9 /* File.swift in Sources */,
+				831E94322219BBCE00001F94 /* Config.swift in Sources */,
 				831E941F2219913100001F94 /* RepositoryCell.swift in Sources */,
 				831E94282219B33F00001F94 /* URLSessionHTTPClient.swift in Sources */,
 			);
