@@ -18,7 +18,8 @@
 		831E94112219812D00001F94 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831E940F2219812D00001F94 /* SnapKit.framework */; };
 		831E94142219886F00001F94 /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94132219886F00001F94 /* FlowController.swift */; };
 		831E941F2219913100001F94 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E941E2219913100001F94 /* RepositoryCell.swift */; };
-		831E94212219934F00001F94 /* RepoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94202219934F00001F94 /* RepoResult.swift */; };
+		831E94212219934F00001F94 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94202219934F00001F94 /* Repository.swift */; };
+		831E9423221996B500001F94 /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E9422221996B500001F94 /* RepositoryViewModel.swift */; };
 		838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FEC5F221938AB00B57515 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +37,8 @@
 		831E940F2219812D00001F94 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		831E94132219886F00001F94 /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		831E941E2219913100001F94 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
-		831E94202219934F00001F94 /* RepoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoResult.swift; sourceTree = "<group>"; };
+		831E94202219934F00001F94 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		831E9422221996B500001F94 /* RepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
 		838FEC5F221938AB00B57515 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 			children = (
 				8302FF44221929E200EB6DD9 /* ListViewController.swift */,
 				831E941E2219913100001F94 /* RepositoryCell.swift */,
+				831E9422221996B500001F94 /* RepositoryViewModel.swift */,
 			);
 			path = "List Repositories";
 			sourceTree = "<group>";
@@ -157,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				8302FF5822192DA300EB6DD9 /* File.swift */,
-				831E94202219934F00001F94 /* RepoResult.swift */,
+				831E94202219934F00001F94 /* Repository.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,10 +271,11 @@
 			files = (
 				831E94142219886F00001F94 /* FlowController.swift in Sources */,
 				8302FF45221929E200EB6DD9 /* ListViewController.swift in Sources */,
+				831E9423221996B500001F94 /* RepositoryViewModel.swift in Sources */,
 				8302FF43221929E200EB6DD9 /* AppDelegate.swift in Sources */,
 				8302FF5722192ADC00EB6DD9 /* ContentFileViewController.swift in Sources */,
 				8302FF5522192AAE00EB6DD9 /* DetailsViewController.swift in Sources */,
-				831E94212219934F00001F94 /* RepoResult.swift in Sources */,
+				831E94212219934F00001F94 /* Repository.swift in Sources */,
 				838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */,
 				8302FF5922192DA300EB6DD9 /* File.swift in Sources */,
 				831E941F2219913100001F94 /* RepositoryCell.swift in Sources */,

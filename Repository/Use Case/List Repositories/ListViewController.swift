@@ -10,7 +10,7 @@ import UIKit
 
 class ListViewController: UITableViewController {
 
-    var onShowRepo: ((URL) -> Void)?
+    var onShowRepo: ((Repository) -> Void)?
     
     var model: [Repository] = [] {
         didSet {
@@ -49,6 +49,11 @@ class ListViewController: UITableViewController {
                                         numberOfStars: repository.stargazersCount)
         cell.configure(model: model)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repository = self.model[indexPath.row]
+        self.onShowRepo?(repository)
     }
     
     // MARK: - Helpers
