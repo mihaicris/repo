@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ReadMeViewController.swift
 //  Repository
 //
 //  Created by Mihai Cristescu on 17/02/2019.
@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Down
+import SnapKit
 
-class ListViewController: UIViewController {
+class ContentFileViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let url = URL(string: "https://api.github.com/search/repositories?q=topic:iOS+language:Swift&sort=stars&order=desc") else {
+        guard let url = URL(string: "https://api.github.com/repos/peripheryapp/periphery/readme") else {
             fatalError("Bad URL")
         }
         let request = URLRequest(url: url)
@@ -33,16 +36,28 @@ class ListViewController: UIViewController {
             }
             
             let jsonDeconder = JSONDecoder()
-            jsonDeconder.keyDecodingStrategy = .convertFromSnakeCase
             
-            guard let searchResult = try? jsonDeconder.decode(SearchResult.self, from: strongData) else {
+            guard let file = try? jsonDeconder.decode(File.self, from: strongData) else {
                 fatalError("Cannot convert data to object")
             }
             
-            print(searchResult.items.count)
+            guard let markdown = file.contentString else { return }
+            
+            
+            DispatchQueue.main.async {
+                self.updateView(with: markdown)
+            }
             
         }
         task.resume()
     }
+    
+    private func updateView(with markdown: String) {
+        guard let downView = try? DownView(frame: CGRect.zero, markdownString: markdown) else { return }
+        self.view.addSubview(downView)
+        downView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+    }
 }
-
