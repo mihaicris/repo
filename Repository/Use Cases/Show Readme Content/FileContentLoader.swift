@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum FileContentLoaderResult {
+public enum FileContentLoaderResult { // TODO: In the future, use the generic type Result from Swift 5
     case success(File)
     case failure(Error)
 }

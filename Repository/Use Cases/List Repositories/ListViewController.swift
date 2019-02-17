@@ -15,8 +15,9 @@ class ListViewController: UITableViewController {
     public var onShowRepo: ((Repository) -> Void)?
     
     private enum State {
+        case undefined
         case loading
-        case showing
+        case finished
         case error
     }
     
@@ -27,7 +28,21 @@ class ListViewController: UITableViewController {
     }
 
     private let repositoryListLoader: RepositoryListLoader
-    private var state: State = .loading // TODO (Mihai): Implement waiting view
+    
+    private var state: State = .loading {
+        didSet {
+            switch state {
+            case .loading:
+                break       // TODO (Mihai): Handle show loading view
+            case .finished:
+                break       // TODO (Mihai): Handle hide loading view
+            case .error:
+                break       // TODO (Mihai): Handle show error
+            default:
+                break
+            }
+        }
+    }
     
     // MARK: - Initialization
     
@@ -70,6 +85,11 @@ class ListViewController: UITableViewController {
         loadRepos()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        state = .loading
+    }
+    
     // MARK: - Helpers
     
     private func loadRepos() {
@@ -77,12 +97,13 @@ class ListViewController: UITableViewController {
             switch result {
             case let .success(repositories):
                 self.model = repositories
-                self.state = .showing
+                self.state = .finished
             case let .failure(error):
                 self.state = .error
                 print(error) // TODO (Mihai): Handle Error
             }
         }
     }
+    
 }
 
