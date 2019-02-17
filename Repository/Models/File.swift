@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct File: Codable {
-    let type: String
-    let size: Int
-    let name: String
-    let content: String
-    let downloadURL: URL
+public struct File: Codable {
+    public let type: String
+    public let size: Int
+    public let name: String
+    public let content: String
+    public let downloadURL: URL
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -23,7 +23,7 @@ struct File: Codable {
         case downloadURL = "download_url"
     }
     
-    var contentString: String? {
+    public var contentString: String? {
         return content.fromBase64()
     }
 }

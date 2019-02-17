@@ -40,7 +40,7 @@ final public class FlowController {
         
         controller.onShowRepo = { [weak self] repository in
             guard let navController = controller.navigationController else {
-                print("Handle Error")
+                // TODO (Mihai): Handle Error
                 return
             }
             controller.title = "Back"

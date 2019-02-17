@@ -27,6 +27,8 @@
 		831E942E2219B50C00001F94 /* RepositoryItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */; };
 		831E94322219BBCE00001F94 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94312219BBCE00001F94 /* Config.swift */; };
 		831E94342219C9EA00001F94 /* FileContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94332219C9EA00001F94 /* FileContentLoader.swift */; };
+		831E94362219CA8200001F94 /* RemoteFileContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94352219CA8200001F94 /* RemoteFileContentLoader.swift */; };
+		831E94382219CAD800001F94 /* FileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831E94372219CAD800001F94 /* FileMapper.swift */; };
 		838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838FEC5F221938AB00B57515 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemsMapper.swift; sourceTree = "<group>"; };
 		831E94312219BBCE00001F94 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		831E94332219C9EA00001F94 /* FileContentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContentLoader.swift; sourceTree = "<group>"; };
+		831E94352219CA8200001F94 /* RemoteFileContentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileContentLoader.swift; sourceTree = "<group>"; };
+		831E94372219CAD800001F94 /* FileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMapper.swift; sourceTree = "<group>"; };
 		838FEC5F221938AB00B57515 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				8302FF5622192ADC00EB6DD9 /* FileContentViewController.swift */,
+				831E94332219C9EA00001F94 /* FileContentLoader.swift */,
 			);
 			path = "Show Readme Content";
 			sourceTree = "<group>";
@@ -193,13 +198,30 @@
 		831E94242219B2D000001F94 /* Repository API */ = {
 			isa = PBXGroup;
 			children = (
+				831E94392219CB5900001F94 /* List Repositories */,
+				831E943A2219CB7200001F94 /* File Content */,
 				831E94252219B2E800001F94 /* HTTPClient.swift */,
 				831E94272219B33F00001F94 /* URLSessionHTTPClient.swift */,
-				831E942B2219B4BB00001F94 /* RemoteRepositoryListLoader.swift */,
-				831E94332219C9EA00001F94 /* FileContentLoader.swift */,
-				831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */,
 			);
 			path = "Repository API";
+			sourceTree = "<group>";
+		};
+		831E94392219CB5900001F94 /* List Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				831E942B2219B4BB00001F94 /* RemoteRepositoryListLoader.swift */,
+				831E942D2219B50C00001F94 /* RepositoryItemsMapper.swift */,
+			);
+			path = "List Repositories";
+			sourceTree = "<group>";
+		};
+		831E943A2219CB7200001F94 /* File Content */ = {
+			isa = PBXGroup;
+			children = (
+				831E94352219CA8200001F94 /* RemoteFileContentLoader.swift */,
+				831E94372219CAD800001F94 /* FileMapper.swift */,
+			);
+			path = "File Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,8 +332,10 @@
 				831E94262219B2E800001F94 /* HTTPClient.swift in Sources */,
 				831E942E2219B50C00001F94 /* RepositoryItemsMapper.swift in Sources */,
 				831E94212219934F00001F94 /* Repository.swift in Sources */,
+				831E94362219CA8200001F94 /* RemoteFileContentLoader.swift in Sources */,
 				838FEC60221938AB00B57515 /* String+Extensions.swift in Sources */,
 				8302FF5922192DA300EB6DD9 /* File.swift in Sources */,
+				831E94382219CAD800001F94 /* FileMapper.swift in Sources */,
 				831E94322219BBCE00001F94 /* Config.swift in Sources */,
 				831E941F2219913100001F94 /* RepositoryCell.swift in Sources */,
 				831E94282219B33F00001F94 /* URLSessionHTTPClient.swift in Sources */,

@@ -12,13 +12,25 @@ import SnapKit
 
 class FileContentViewController: UIViewController {
     
-
+    private let fileContentLoader: FileContentLoader
+    
+    init(fileContentLoader: FileContentLoader) {
+        self.fileContentLoader = fileContentLoader
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         guard let url = URL(string: "https://api.github.com/repos/peripheryapp/periphery/readme") else {
             fatalError("Bad URL")
         }
+        
+        
         let request = URLRequest(url: url)
         let session = URLSession(configuration: URLSessionConfiguration.default)
         
