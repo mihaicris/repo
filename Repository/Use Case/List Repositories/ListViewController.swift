@@ -17,6 +17,12 @@ class ListViewController: UIViewController {
         view.backgroundColor = .white
         title = "iOS Repositories"
         
+        self.loadRepos()
+    }
+    
+    // MARK: - Helpers
+    
+    private func loadRepos() {
         guard let url = URL(string: "https://api.github.com/search/repositories?q=topic:iOS+language:Swift&sort=stars&order=desc&per_page=100") else {
             fatalError("Bad URL")
         }
