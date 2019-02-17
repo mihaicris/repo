@@ -17,7 +17,7 @@ final public class FlowController {
     }
     
     public func createRootViewCotroller() -> UIViewController {
-        let startViewController = ListViewController()
+        let startViewController = ListViewController(style: .plain)
         
         startViewController.onShowRepo = { _ in }
         

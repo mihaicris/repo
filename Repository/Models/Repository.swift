@@ -12,7 +12,7 @@ struct Owner: Decodable{
     let login: String
 }
 
-struct RepoResult: Decodable {
+struct Repository: Decodable {
     let name: String
     let fullName: String
     let owner: Owner
@@ -24,5 +24,5 @@ struct RepoResult: Decodable {
 }
 
 struct SearchResult: Decodable {
-    let items: [RepoResult]
+    let items: [Repository]
 }

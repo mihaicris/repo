@@ -8,16 +8,47 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UITableViewController {
 
     var onShowRepo: ((URL) -> Void)?
+    
+    var model: [Repository] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "iOS Repositories"
+        tableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
+        loadRepos()
+    }
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.model.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.identifier, for: indexPath) as? RepositoryCell else {
+            return UITableViewCell()
+        }
+        let repository = self.model[indexPath.row]
         
-        self.loadRepos()
+        let model = RepositoryViewModel(fullName: repository.fullName,
+                                        description: repository.description,
+                                        numberOfStars: repository.stargazersCount)
+        cell.configure(model: model)
+        return cell
     }
     
     // MARK: - Helpers
@@ -50,7 +81,9 @@ class ListViewController: UIViewController {
                 fatalError("Cannot convert data to object")
             }
             
-            print(searchResult.items.count)
+            DispatchQueue.main.async {
+                self.model = searchResult.items
+            }
             
         }
         task.resume()
