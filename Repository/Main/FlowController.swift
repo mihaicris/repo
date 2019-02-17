@@ -44,7 +44,7 @@ final public class FlowController {
                 return
             }
             controller.title = "Back"
-            self?.showDetailsViewController(repository, from: navController)
+            self?.showFileContentViewController(repository, from: navController)
         }
         
         return controller
@@ -55,5 +55,10 @@ final public class FlowController {
         navController.pushViewController(controller, animated: true)
     }
     
-
+    private func showFileContentViewController(_ repository: Repository, from navController: UINavigationController) {
+        let fileContentLoader = RemoteFileContentLoader(url: repository.url, client: self.client)
+        let controller = FileContentViewController(fileContentLoader: fileContentLoader)
+        navController.pushViewController(controller, animated: true)
+    }
+    
 }

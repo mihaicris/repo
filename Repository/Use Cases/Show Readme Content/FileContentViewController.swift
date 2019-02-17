@@ -12,7 +12,11 @@ import SnapKit
 
 class FileContentViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let fileContentLoader: FileContentLoader
+    
+    // MARK: - Initialization
     
     init(fileContentLoader: FileContentLoader) {
         self.fileContentLoader = fileContentLoader
@@ -23,45 +27,27 @@ class FileContentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let url = URL(string: "https://api.github.com/repos/peripheryapp/periphery/readme") else {
-            fatalError("Bad URL")
+        view.backgroundColor = .white
+        title = "README.md"
+        loadContent()
+    }
+    
+    // MARK: - Helpers
+    
+    private func loadContent() {
+        fileContentLoader.load { [weak self] result in
+            switch result {
+            case let .success(file):
+                guard let markdown = file.contentString else { return }
+                self?.updateView(with: markdown)
+            case let .failure(error):
+                // TODO (Mihai): Handle Error
+                print(error)
+            }
         }
-        
-        
-        let request = URLRequest(url: url)
-        let session = URLSession(configuration: URLSessionConfiguration.default)
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                fatalError("Error: Data task returned an error.")
-            }
-            
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                fatalError("Error: Bad URL Response")
-            }
-            
-            guard let strongData = data else {
-                fatalError("Error: Data is nil")
-            }
-            
-            let jsonDeconder = JSONDecoder()
-            
-            guard let file = try? jsonDeconder.decode(File.self, from: strongData) else {
-                fatalError("Cannot convert data to object")
-            }
-            
-            guard let markdown = file.contentString else { return }
-            
-            
-            DispatchQueue.main.async {
-                self.updateView(with: markdown)
-            }
-            
-        }
-        task.resume()
     }
     
     private func updateView(with markdown: String) {

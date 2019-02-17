@@ -14,7 +14,6 @@ internal final class FileMapper {
     
     internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteFileContentLoader.Result {
         let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         guard response.statusCode == OK_200,
             let file = try? jsonDecoder.decode(File.self, from: data) else {

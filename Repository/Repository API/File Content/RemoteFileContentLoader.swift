@@ -9,6 +9,9 @@
 import Foundation
 
 public final class RemoteFileContentLoader: FileContentLoader {
+    
+    // MARK: - Properties
+    
     private let url: URL
     private let client: HTTPClient
     
@@ -19,13 +22,20 @@ public final class RemoteFileContentLoader: FileContentLoader {
     
     public typealias Result = FileContentLoaderResult
     
+    // MARK: - Initializer
+    
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
+    // MARK: - API
+    
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { [weak self] result in
+        
+        let readmeURL = getReadmeURL(from: url)
+        
+        client.get(from: readmeURL) { [weak self] result in
             guard self != nil else { return }
             
             switch result {
@@ -35,5 +45,11 @@ public final class RemoteFileContentLoader: FileContentLoader {
                 completion(.failure(Error.connectivity))
             }
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func getReadmeURL(from url: URL) -> URL {
+        return url.appendingPathComponent("readme")
     }
 }
