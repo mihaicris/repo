@@ -35,8 +35,8 @@ final public class FlowController {
             fatalError("Bad URL") // TODO (Mihai): HANDLE ERROR
         }
         
-        let repositoryLoader = RemoteRepositoryLoader(url: url, client: self.client)
-        let controller = ListViewController(repositoryLoader: repositoryLoader)
+        let repositoryListLoader = RemoteRepositoryListLoader(url: url, client: self.client)
+        let controller = ListViewController(repositoryLoader: repositoryListLoader)
         
         controller.onShowRepo = { [weak self] repository in
             guard let navController = controller.navigationController else {

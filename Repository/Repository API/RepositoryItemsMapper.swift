@@ -1,5 +1,5 @@
 //
-//  RepositoryMapper.swift
+//  RepositoryItemsMapper.swift
 //  Repository
 //
 //  Created by Mihai Cristescu on 17/02/2019.
@@ -15,13 +15,13 @@ internal final class RepositoryItemsMapper {
     
     private static var OK_200: Int { return 200 }
     
-    internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteRepositoryLoader.Result {
+    internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteRepositoryListLoader.Result {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         guard response.statusCode == OK_200,
             let root = try? jsonDecoder.decode(Root.self, from: data) else {
-                return .failure(RemoteRepositoryLoader.Error.invalidData)
+                return .failure(RemoteRepositoryListLoader.Error.invalidData)
         }
         
         return .success(root.items)

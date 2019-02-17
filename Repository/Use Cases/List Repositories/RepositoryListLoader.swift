@@ -1,5 +1,5 @@
 //
-//  RepositoryLoader.swift
+//  RepositoryListLoader.swift
 //  Repository
 //
 //  Created by Mihai Cristescu on 17/02/2019.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public enum LoadRepositoryResult {
+public enum LoadRepositoryListResult {
     case success([Repository])
     case failure(Error)
 }
 
-public protocol RepositoryLoader {
-    func load(completion: @escaping (LoadRepositoryResult) -> Void)
+public protocol RepositoryListLoader {
+    func load(completion: @escaping (LoadRepositoryListResult) -> Void)
 }

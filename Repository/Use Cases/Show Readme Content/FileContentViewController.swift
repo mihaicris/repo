@@ -10,7 +10,7 @@ import UIKit
 import Down
 import SnapKit
 
-class ContentFileViewController: UIViewController {
+class FileContentViewController: UIViewController {
     
 
     override func viewDidLoad() {

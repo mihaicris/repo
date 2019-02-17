@@ -26,13 +26,13 @@ class ListViewController: UITableViewController {
         }
     }
 
-    private let repositoryLoader: RepositoryLoader
+    private let repositoryListLoader: RepositoryListLoader
     private var state: State = .loading // TODO (Mihai): Implement waiting view
     
     // MARK: - Initialization
     
-    init(repositoryLoader: RepositoryLoader) {
-        self.repositoryLoader = repositoryLoader
+    init(repositoryLoader: RepositoryListLoader) {
+        self.repositoryListLoader = repositoryLoader
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,7 +73,7 @@ class ListViewController: UITableViewController {
     // MARK: - Helpers
     
     private func loadRepos() {
-        repositoryLoader.load { result in
+        repositoryListLoader.load { result in
             switch result {
             case let .success(repositories):
                 self.model = repositories

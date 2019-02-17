@@ -1,5 +1,5 @@
 //
-//  RemoteRepositoryLoader.swift
+//  RemoteRepositoryListLoader.swift
 //  Repository
 //
 //  Created by Mihai Cristescu on 17/02/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RemoteRepositoryLoader: RepositoryLoader {
+public final class RemoteRepositoryListLoader: RepositoryListLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -17,7 +17,7 @@ public final class RemoteRepositoryLoader: RepositoryLoader {
         case invalidData
     }
     
-    public typealias Result = LoadRepositoryResult
+    public typealias Result = LoadRepositoryListResult
     
     public init(url: URL, client: HTTPClient) {
         self.url = url
