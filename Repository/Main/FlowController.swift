@@ -29,7 +29,13 @@ final public class FlowController {
     // MARK: - Helpers
 
     private func createListViewController() -> UIViewController {
-        let controller = ListViewController(style: .plain)
+        guard let url = URL(string: "https://api.github.com/search/repositories?q=topic:iOS+language:Swift&sort=stars&order=desc&per_page=100") else {
+            fatalError("Bad URL")
+        }
+        
+        let client = URLSessionHTTPClient()
+        let repositoryLoader = RemoteRepositoryLoader(url: url, client: client)
+        let controller = ListViewController(repositoryLoader: repositoryLoader)
         
         controller.onShowRepo = { [weak self] repository in
             guard let navController = controller.navigationController else {

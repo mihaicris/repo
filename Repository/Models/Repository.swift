@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct Owner: Decodable{
-    let login: String
+public struct Owner: Decodable{
+    public let login: String
 }
 
-struct Repository: Decodable {
-    let name: String
-    let fullName: String
-    let owner: Owner
-    let description: String
-    let url: URL
-    let stargazersCount: Int
-    let watchersCount: Int
-    let forksCount: Int
+public struct Repository: Decodable {
+    public let name: String
+    public let fullName: String
+    public let owner: Owner
+    public let description: String
+    public let url: URL
+    public let stargazersCount: Int
+    public let watchersCount: Int
+    public let forksCount: Int
 }
 
-struct SearchResult: Decodable {
-    let items: [Repository]
+public struct SearchResult: Decodable {
+    public let items: [Repository]
 }

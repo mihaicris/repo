@@ -10,24 +10,23 @@ import UIKit
 
 class ListViewController: UITableViewController {
 
-    var onShowRepo: ((Repository) -> Void)?
+    // MARK: - Properties
     
-    var model: [Repository] = [] {
+    private let repositoryLoader: RepositoryLoader
+    
+    public var onShowRepo: ((Repository) -> Void)?
+    
+    private var model: [Repository] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        title = "iOS Repositories"
-        tableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
-        loadRepos()
-    }
+    // MARK: - Initialization
     
-    override init(style: UITableView.Style) {
-        super.init(style: style)
+    init(repositoryLoader: RepositoryLoader) {
+        self.repositoryLoader = repositoryLoader
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,42 +55,25 @@ class ListViewController: UITableViewController {
         self.onShowRepo?(repository)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        title = "iOS Repositories"
+        tableView.register(RepositoryCell.self, forCellReuseIdentifier: RepositoryCell.identifier)
+        loadRepos()
+    }
+    
     // MARK: - Helpers
     
     private func loadRepos() {
-        guard let url = URL(string: "https://api.github.com/search/repositories?q=topic:iOS+language:Swift&sort=stars&order=desc&per_page=100") else {
-            fatalError("Bad URL")
+        repositoryLoader.load { result in
+            switch result {
+            case let .success(repositories):
+                self.model = repositories
+            case let .failure(error):
+                print(error) // TODO: Handle Error
+            }
         }
-        
-        let request = URLRequest(url: url)
-        let session = URLSession(configuration: URLSessionConfiguration.default)
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                fatalError("Error: Data task returned an error.")
-            }
-            
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                fatalError("Error: Bad URL Response")
-            }
-            
-            guard let strongData = data else {
-                fatalError("Error: Data is nil")
-            }
-            
-            let jsonDeconder = JSONDecoder()
-            jsonDeconder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            guard let searchResult = try? jsonDeconder.decode(SearchResult.self, from: strongData) else {
-                fatalError("Cannot convert data to object")
-            }
-            
-            DispatchQueue.main.async {
-                self.model = searchResult.items
-            }
-            
-        }
-        task.resume()
     }
 }
 
